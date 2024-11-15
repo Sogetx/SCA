@@ -36,7 +36,7 @@ SECRET_KEY=your_secret_key_here
 ```
 ### 5. Apply migrations
 ```
-python manage.py makemigrations
+python manage.py makemigrations core
 python manage.py migrate
 ```
 ### 6. Start the server
