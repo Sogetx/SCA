@@ -11,9 +11,8 @@ class TargetSerializer(serializers.ModelSerializer):
         model = Target
         fields = ['id', 'name', 'country', 'notes', 'completed', 'mission']
         extra_kwargs = {'mission': {'required': False}}
-        
+
     def validate(self, data):
-        # Перевірка, чи завершена місія або таргет
         mission = data.get('mission')
         if mission and mission.completed:
             raise serializers.ValidationError("Cannot add or modify targets for a completed mission.")
