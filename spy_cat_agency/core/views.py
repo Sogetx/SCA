@@ -24,7 +24,8 @@ class SpyCatViewSet(viewsets.ModelViewSet):
 
     def validate_breed(self, breed):
         response = requests.get(f"https://api.thecatapi.com/v1/breeds/search?q={breed}")
-        return response.json() != []
+        breeds = response.json()
+        return any(breed.lower() == b['name'].lower() for b in breeds)
 
     @action(detail=True, methods=['patch'])
     def update_salary(self, request, pk=None):
